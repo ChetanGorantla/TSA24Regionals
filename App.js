@@ -16,6 +16,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login}options={{headerShown: false,}}/>
         <Stack.Screen name="Home" component={Home} options={{headerShown: false,}}/>
+        <Stack.Screen name="Appointments" component={Appointments}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -23,7 +24,7 @@ const App = () => {
 
 
 
-//Login
+//Login page
 const Login = props => {
   const onPress = () => {
     props.navigation.navigate('Home');
@@ -81,23 +82,27 @@ const Login = props => {
 }
 
 //Homepage/Dashboard
-const Home = () => {
+const Home = props => {
+  const onAppts = () => {
+    props.navigation.navigate('Appointments');
+    
+  };
   return (
     <ScrollView style ={styles.container}>
       <View>
         
         <View>
 
-          <View style={{marginTop:48, flexDirection:"row", justifyContent: "left"}}>
-            <Text>Welcome back,</Text>
+          <View style={{marginTop:60, flexDirection:"row", justifyContent: "left"}}>
+            <Text style = {{fontSize:30, color: "#FF6961"}}>Welcome back,</Text>
           </View>
           <View style={{marginTop: 10, flexDirection:"row", justifyContent: "left"}}>
-            <Text>Chetan Gorantla!</Text>
+            <Text style = {{fontSize:40, color: "#BD2A2A"}}>Chetan Gorantla!</Text>
           </View>
 
 
           <View style={{marginTop:35, flexDirection:"row", justifyContent: "center"}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onAppts}>
               <View style={styles.dashButton}>
                 <Image source = {require("./assets/calendar.png")} style = {styles.dashPic}></Image>
                 <Text style = {styles.centeredText}>Appointments</Text>
@@ -119,8 +124,8 @@ const Home = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
-              <View style={styles.dashButton}>
-                <Image source = {require("./assets/professional.png")} style = {{width: 100, height: 140}}></Image>
+              <View style={[styles.dashButton, {height: 240}]}>
+                <Image source = {require("./assets/openai.png")} style = {{width: 105, height: 107}}></Image>
                 <Text style = {styles.centeredText}>Chat with a</Text>
                 <Text style = {styles.centeredText}>Professional</Text>
               </View>
@@ -130,13 +135,13 @@ const Home = () => {
           <View style={{marginTop:35, flexDirection:"row", justifyContent: "center"}}>
             <TouchableOpacity>
               <View style={styles.dashButton}>
-                <Image source = {require("./assets/facebook.png")} style = {styles.dashPic}></Image>
-                <Text style = {styles.centeredText}>Facebook</Text>
+                <Image source = {require("./assets/hospital.png")} style = {styles.dashPic}></Image>
+                <Text style = {styles.centeredText}>Hospital</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
               <View style={styles.dashButton}>
-                <Image source = {require("./assets/facebook.png")} style = {styles.dashPic}></Image>
+                <Image source = {require("./assets/education.png")} style = {styles.dashPic}></Image>
                 <Text style = {styles.centeredText}>Education</Text>
               </View>
             </TouchableOpacity>
@@ -148,6 +153,32 @@ const Home = () => {
     </ScrollView>
   );
 }
+
+//Appointments
+const Appointments = () => {
+  
+  return (
+    <ScrollView style ={styles.container}>
+      <View>
+        <View>
+          
+            <View style = {[styles.appointment, {alignItems: "center"}]}>
+              <Text style = {styles.text}>Kelsey Seybold - Thyroid Checkup February 10, 2024 at 3:15 - 3:45 pm <Text style = {[styles.text, styles.link]}>Want to reschedule?</Text></Text>
+              
+              
+            </View>
+            <View style = {[styles.appointment, {alignItems: "center"}]}>
+              <Text style = {styles.text}>Kelsey Seybold - Bone Density Scan March 24, 2024 at 10:30 - 11 am       <Text style = {[styles.text, styles.link]}>Want to reschedule?</Text></Text>
+              
+              
+            </View>
+          
+        </View>
+      </View>
+    </ScrollView>
+  )
+}
+
 
 const styles = StyleSheet.create({
   container:{
@@ -163,6 +194,22 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir Next",
     color: "#1D2029",
     alignItems: "center"
+  },
+  appointment: {
+    flexDirection: "row",
+    marginHorizontal: 0,
+    marginVertical: 15,
+    paddingVertical: 20,
+    paddingHorizontal: 38,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(171, 180, 189, 0.65)",
+    borderRadius:4,
+    backgroundColor: "#fff",
+    shadowColor: "rgba(171, 180, 189, 0.35)",
+    shadowOffset: {width:0, height:10},
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    elevation: 5,
   },
   socialButton: {
     flexDirection: "row",
