@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const ChatGPT = () => {
     const [data, setData] = useState([]);
-    const apiKey = '.'
+    const apiKey = 'change to your openai api key'
     const apiUrl = 'https://api.openai.com/v1/chat/completions'
     const [textInput, setTextInput] = useState('');
 
